@@ -47,11 +47,11 @@ function App() {
           </div>
         </div>
       </nav>
-      <div className="container">
+      <div className="container-fluid">
         <Routes>
-          <Route exact path="/" element={<Home />}>
+          <Route exact path="/" element={<Login />}>
           </Route>
-          <Route path="/login" element={<Login />}>
+          <Route path="/home" element={<Home />}>
           </Route>
         </Routes>
       </div>
