@@ -1,3 +1,6 @@
+import mongodb from "mongodb"
+const ObjectId = mongodb.ObjectID
+
 let accounts
 export default class RestaurantsDAO {
     static async injectDB(conn) {
@@ -46,6 +49,20 @@ export default class RestaurantsDAO {
                 `Unable to convert curosr to array or problem counting documents, ${e}`
             )
             return { accountsList: [], totalNumAccounts: 0 }
+        }
+    }
+
+    static async updateAccount(accountId, user, balance) {
+        try {
+            const updateResponse = await accounts.updateOne(
+                { user: user, _id: ObjectId(accountId) },
+                { $set: { balance: balance } },
+            )
+
+            return updateResponse
+        } catch (e) {
+            console.error(`Unable to update account: ${e}`)
+            return { error: e }
         }
     }
 }
