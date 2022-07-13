@@ -49,9 +49,13 @@ function App() {
       </nav>
       <div className="container-fluid">
         <Routes>
-          <Route exact path="/" element={<Login />}>
+          <Route exact path="/" element={<Login />} render={(props) => (
+            <Login {...props} login={login} />
+          )}>
           </Route>
-          <Route path="/home" element={<Home />}>
+          <Route path="/home" element={<Home />} render={(props) => (
+            <Home {...props} user={user} />
+          )}>
           </Route>
         </Routes>
       </div>
