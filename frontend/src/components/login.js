@@ -3,7 +3,9 @@ import './login.css'
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/authProvider";
 import httpCommon from "../http-common";
+import { useNavigate } from "react-router-dom";
 const LOGIN_URL = '/users';
+
 
 const Login = props => {
     const { setAuth } = useContext(AuthContext);
@@ -13,6 +15,7 @@ const Login = props => {
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    let navigate = useNavigate();
 
     useEffect(() => {
         userRef.current.focus();
@@ -39,6 +42,8 @@ const Login = props => {
             setUser('');
             setPwd('');
             setSuccess(true);
+            props.login(user)
+            navigate("/home");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -51,15 +56,6 @@ const Login = props => {
             }
             errRef.current.focus();
         }
-
-        if (success) {
-            login();
-        }
-    }
-
-    const login = () => {
-        props.login(user)
-        props.history.push("/home")
     }
 
     return (

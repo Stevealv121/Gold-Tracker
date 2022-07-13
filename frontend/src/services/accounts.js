@@ -6,6 +6,12 @@ class AccountsDataService {
         return http.get(`/accounts?id=${id}`)
     }
 
+    getAccount(data) {
+        console.log(data)
+        const json = { user: data }
+        return http.post("/accounts/account", json);
+    }
+
     updateReview(data) {
         return http.put("/accounts/balance", data);
     }

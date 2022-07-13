@@ -2,6 +2,7 @@ import React from "react";
 import { useRef, useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 import AccountDataService from "../services/accounts";
+import { useParams } from "react-router-dom";
 
 const Home = props => {
 
@@ -11,10 +12,23 @@ const Home = props => {
         user: ""
     }
 
+    let { id } = useParams();
+
     const [account, setAccount] = useState(initialAccountState);
 
-    const getAccount = id => {
-        AccountDataService.get(id)
+    // const getAccount = id => {
+    //     AccountDataService.get(id)
+    //         .then(response => {
+    //             setAccount(response.data);
+    //             console.log(response.data);
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // };
+
+    const getAccount = user => {
+        AccountDataService.getAccount(user)
             .then(response => {
                 setAccount(response.data);
                 console.log(response.data);
@@ -25,8 +39,8 @@ const Home = props => {
     };
 
     useEffect(() => {
-        getAccount(props.match.params.id);
-    }, [props.match.params.id]);
+        getAccount(props.user);
+    }, [props.user]);
 
     return (
         <div className="main">

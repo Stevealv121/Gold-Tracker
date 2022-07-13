@@ -12,6 +12,7 @@ import Home from "./components/home";
 function App() {
   const [user, setUser] = React.useState(null);
 
+
   async function login(user = null) {
     setUser(user);
   }
@@ -49,13 +50,9 @@ function App() {
       </nav>
       <div className="container-fluid">
         <Routes>
-          <Route exact path="/" element={<Login />} render={(props) => (
-            <Login {...props} login={login} />
-          )}>
+          <Route exact path="/" element={<Login login={login} />}>
           </Route>
-          <Route path="/home" element={<Home />} render={(props) => (
-            <Home {...props} user={user} />
-          )}>
+          <Route path="/home" element={<Home user={user} />}>
           </Route>
         </Routes>
       </div>
