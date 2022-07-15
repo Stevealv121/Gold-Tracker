@@ -7,12 +7,11 @@ class AccountsDataService {
     }
 
     getAccount(data) {
-        console.log(data)
         const json = { user: data }
         return http.post("/accounts/account", json);
     }
 
-    updateReview(data) {
+    updateBalance(data) {
         return http.put("/accounts/balance", data);
     }
 

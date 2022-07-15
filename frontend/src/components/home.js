@@ -8,24 +8,17 @@ const Home = props => {
 
     const initialAccountState = {
         id: null,
-        balance: "",
+        balance: 0,
         user: ""
     }
+
+    const [new_balance, setBalance] = useState(0);
+    const [remove_balance, setRemoveBalance] = useState(0);
+    let n_balance = 0;
 
     let { id } = useParams();
 
     const [account, setAccount] = useState(initialAccountState);
-
-    // const getAccount = id => {
-    //     AccountDataService.get(id)
-    //         .then(response => {
-    //             setAccount(response.data);
-    //             console.log(response.data);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // };
 
     const getAccount = user => {
         AccountDataService.getAccount(user)
@@ -37,6 +30,43 @@ const Home = props => {
                 console.log(e);
             });
     };
+
+    const handleUpdateBalance = async (e) => {
+        e.preventDefault();
+
+        try {
+            const data = { user: account.user, balance: n_balance };
+            AccountDataService.updateBalance(data).catch(e => {
+                console.log(e);
+            });
+            setAccount({ id: account.id, balance: n_balance, user: account.user });
+
+        } catch (error) {
+            if (!error?.response) {
+                console.log('No Server Response');
+            } else {
+                console.log('Update Balance failed');
+            }
+        }
+    }
+
+    const removeGold = async (e) => {
+        e.preventDefault();
+        var result = 0;
+        const actual_balance = account.balance;
+        result = actual_balance - remove_balance;
+        n_balance = result;
+        handleUpdateBalance(e);
+    }
+
+    const addGold = async (e) => {
+        e.preventDefault();
+        var result = 0;
+        const actual_balance = account.balance;
+        result = actual_balance + new_balance;
+        n_balance = result;
+        handleUpdateBalance(e);
+    }
 
     useEffect(() => {
         getAccount(props.user);
@@ -52,16 +82,18 @@ const Home = props => {
                         <div className="card-body">
                             <h4>Account Balance: {account.balance}</h4>
                             <br />
-                            <form class="row g-3">
+                            <form onSubmit={addGold} class="row g-3">
                                 <label htmlFor="add">Add to account</label>
-                                <input type="number" id="add" />
-                                <button className="btn btn-success">+</button>
+                                <input type="number" id="add" onChange={(e) => setBalance(+e.target.value)}
+                                />
+                                <button type="submit" className="btn btn-success">+</button>
                             </form>
                             <br />
-                            <form class="row g-3">
+                            <form onSubmit={removeGold} class="row g-3">
                                 <label htmlFor="remove">Remove from account</label>
-                                <input type="number" id="remove" />
-                                <button className="btn btn-danger">-</button>
+                                <input type="number" id="remove" onChange={(e) => setRemoveBalance(+e.target.value)}
+                                />
+                                <button type="submit" className="btn btn-danger">-</button>
                             </form>
                         </div>
                     </div>
