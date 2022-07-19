@@ -8,6 +8,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/login";
 import Home from "./components/home";
+import Cards from "./components/cards/cards";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -36,6 +37,9 @@ function App() {
                 <Link class="nav-link active" aria-current="page" to="/home">Home</Link>
               </li>
               <li class="nav-item">
+                <Link class="nav-link" to="/cards">Cards</Link>
+              </li>
+              <li class="nav-item">
                 <Link class="nav-link" to="/">Logout</Link>
               </li>
             </ul>
@@ -47,6 +51,8 @@ function App() {
           <Route exact path="/" element={<Login login={login} />}>
           </Route>
           <Route path="/home" element={<Home user={user} />}>
+          </Route>
+          <Route path="/cards" element={<Cards user={user} />}>
           </Route>
         </Routes>
       </div>

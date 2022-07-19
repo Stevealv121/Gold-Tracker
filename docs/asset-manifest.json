@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/Gold-Tracker/static/css/main.982d6ff3.css",
-    "main.js": "/Gold-Tracker/static/js/main.27b1f6db.js",
+    "main.css": "/Gold-Tracker/static/css/main.542e0029.css",
+    "main.js": "/Gold-Tracker/static/js/main.7c107b41.js",
     "static/js/787.cda612ba.chunk.js": "/Gold-Tracker/static/js/787.cda612ba.chunk.js",
+    "static/media/visa.png": "/Gold-Tracker/static/media/visa.23e4592ce8c295a17ddd.png",
     "index.html": "/Gold-Tracker/index.html",
-    "main.982d6ff3.css.map": "/Gold-Tracker/static/css/main.982d6ff3.css.map",
-    "main.27b1f6db.js.map": "/Gold-Tracker/static/js/main.27b1f6db.js.map",
+    "main.542e0029.css.map": "/Gold-Tracker/static/css/main.542e0029.css.map",
+    "main.7c107b41.js.map": "/Gold-Tracker/static/js/main.7c107b41.js.map",
     "787.cda612ba.chunk.js.map": "/Gold-Tracker/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.982d6ff3.css",
-    "static/js/main.27b1f6db.js"
+    "static/css/main.542e0029.css",
+    "static/js/main.7c107b41.js"
   ]
 }
