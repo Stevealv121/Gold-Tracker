@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   Link
@@ -9,17 +8,31 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/login";
 import Home from "./components/home";
 import Cards from "./components/cards/cards";
+import EditCard from "./components/cards/edit/edit_card";
+import AddCard from "./components/cards/add/add_card";
+import AddExpense from "./components/expenses/add_expense";
+import EditExpense from "./components/expenses/edit_expense";
 
 function App() {
   const [user, setUser] = React.useState(null);
+  const [card, setCard] = React.useState(null);
+  const [expense, setExpense] = React.useState(null);
 
 
   async function login(user = null) {
     setUser(user);
   }
 
-  async function logout() {
-    setUser(null);
+  // async function logout() {
+  //   setUser(null);
+  // }
+
+  async function selectCard(card = null) {
+    setCard(card);
+  }
+
+  async function selectExpense(expense = null) {
+    setExpense(expense);
   }
 
 
@@ -52,7 +65,15 @@ function App() {
           </Route>
           <Route path="/home" element={<Home user={user} />}>
           </Route>
-          <Route path="/cards" element={<Cards user={user} />}>
+          <Route path="/cards" element={<Cards user={user} select={selectCard} />}>
+          </Route>
+          <Route path="/card/edit" element={<EditCard card={card} select={selectExpense} />}>
+          </Route>
+          <Route path="/card/new" element={<AddCard user={user} />}>
+          </Route>
+          <Route path="/expense_add" element={<AddExpense user={user} card={card} />}>
+          </Route>
+          <Route path="/expense_edit" element={<EditExpense user={user} expense={expense} />}>
           </Route>
         </Routes>
       </div>

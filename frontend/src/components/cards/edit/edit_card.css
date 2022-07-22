@@ -1,0 +1,9 @@
+#typeImg {
+    width: 80px;
+    height: 65px;
+}
+
+#table_row:hover {
+    cursor: pointer;
+    background-color: beige;
+}

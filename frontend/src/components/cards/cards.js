@@ -1,10 +1,12 @@
 import React from "react";
 import "./cards.css";
-import visa from "../../assets/img/visa.png"
 import { useState, useEffect } from 'react';
 import CardsDataService from "../../services/cards.js"
+import { useNavigate } from "react-router-dom";
+
 const Cards = props => {
 
+    let navigate = useNavigate();
     const initalCardsState = [];
     const [cards, setCards] = useState(initalCardsState);
 
@@ -21,7 +23,18 @@ const Cards = props => {
 
     useEffect(() => {
         getCards(props.user);
-    }, [props.user]);
+    });
+
+    const selectCard = async (e, card) => {
+        e.preventDefault();
+        props.select(card);
+        navigate("/card/edit");
+    }
+
+    const addCard = async (e) => {
+        //e.preventDefault();
+        navigate("/card/new")
+    }
 
 
     return (
@@ -33,17 +46,21 @@ const Cards = props => {
                 <div className="col-4">
                     {cards.map((cardData, key) => (
                         <div className="wrapper-card">
-                            <div className="card">
+                            <div key={key} className="card" onClick={(e) => selectCard(e, cardData)}>
                                 <div className="card-body">
                                     <h4>{cardData.name}</h4>
                                     <h5>{cardData.balance}</h5>
-                                    <img id="typeImg" src={visa} alt="type" />
+                                    <img id="typeImg" src={require(`../../assets/img/${cardData.type}.png`)} alt="type" />
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
+            <br />
+            <button className="btn btn-success" onClick={addCard}>Add Card</button>
+            <br />
+            <br />
         </>
     )
 }
