@@ -1,0 +1,8 @@
+#placeCard:hover {
+    cursor: pointer;
+    background-color: cornsilk;
+}
+
+#placeIcon {
+    width: 3em;
+}

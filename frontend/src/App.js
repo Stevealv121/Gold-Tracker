@@ -13,11 +13,16 @@ import AddCard from "./components/cards/add/add_card";
 import AddExpense from "./components/expenses/add_expense";
 import EditExpense from "./components/expenses/edit_expense";
 import DeleteCards from "./components/cards/delete/delete_card";
+import Pantry from "./components/pantry/pantry";
+import PantryPlace from "./components/pantry/place/pantry_place";
+import AddToPantry from "./components/pantry/add/add_to_pantry";
 
 function App() {
   const [user, setUser] = React.useState(null);
   const [card, setCard] = React.useState(null);
   const [expense, setExpense] = React.useState(null);
+  const [place, setPlace] = React.useState(null);
+  const [item, setItem] = React.useState(null);
 
 
   async function login(user = null) {
@@ -35,7 +40,12 @@ function App() {
   async function selectExpense(expense = null) {
     setExpense(expense);
   }
-
+  async function selectPlace(place = null) {
+    setPlace(place);
+  }
+  async function selectItem(item = null) {
+    setItem(item);
+  }
 
   return (
     <div className="App">
@@ -52,6 +62,9 @@ function App() {
               </li>
               <li class="nav-item">
                 <Link class="nav-link" to="/cards">Cards</Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/pantry">Pantry</Link>
               </li>
               <li class="nav-item">
                 <Link class="nav-link" to="/">Logout</Link>
@@ -77,6 +90,12 @@ function App() {
           <Route path="/expense_edit" element={<EditExpense user={user} expense={expense} />}>
           </Route>
           <Route path="/cards/delete" element={<DeleteCards user={user} />}>
+          </Route>
+          <Route path="/pantry" element={<Pantry select={selectPlace} />}>
+          </Route>
+          <Route path="/place" element={<PantryPlace place={place} select={selectItem} />}>
+          </Route>
+          <Route path="/addToPantry" element={<AddToPantry item={item} place={place} />}>
           </Route>
         </Routes>
       </div>
