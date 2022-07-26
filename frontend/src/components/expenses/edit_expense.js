@@ -78,20 +78,20 @@ const EditExpense = props => {
         <>
             <h2>Edit expense</h2>
             <br />
-            <div className="row" onClick={onClick}>
+            <div id="row" className="row" onClick={onClick}>
                 <div className="col-4">Description</div>
                 <div className="col">
                     {showResults ? <input type="text" id="description_inp" onChange={(e) => setDescription(e.target.value)} placeholder={expense.description} />
                         : <p id="description_p">{expense.description}</p>}
                 </div>
             </div>
-            <div className="row" onClick={onClickCost}>
+            <div id="row" className="row" onClick={onClickCost}>
                 <div className="col-4">Cost</div>
                 <div className="col">
                     {showCost ? <input type="number" id="cost_inp" onChange={(e) => setCost(+e.target.value)} placeholder={expense.cost} />
                         : <p id="cost_p">{expense.cost}</p>}</div>
             </div>
-            <div className="row" onClick={onClickDate}>
+            <div id="row" className="row" onClick={onClickDate}>
                 <div className="col-4">Date</div>
                 <div className="col">
                     {showDate ? <input type="date" id="date_inp" onChange={(e) => setDate(e.target.value)} placeholder={expense.date} />

@@ -3,6 +3,7 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 import AccountDataService from "../services/accounts";
 import { useParams } from "react-router-dom";
+import PrettyNumber from "../models/prettyNumber.js";
 
 const Home = props => {
 
@@ -14,6 +15,7 @@ const Home = props => {
 
     const [new_balance, setBalance] = useState(0);
     const [remove_balance, setRemoveBalance] = useState(0);
+    const [prettyBalance, setPrettyBalance] = useState("0.00");
     let n_balance = 0;
 
     let { id } = useParams();
@@ -24,6 +26,9 @@ const Home = props => {
         AccountDataService.getAccount(user)
             .then(response => {
                 setAccount(response.data);
+                let formattedNumber = new PrettyNumber(account.balance);
+                setPrettyBalance(formattedNumber.number);
+                console.log("🚀 ~ file: home.js ~ line 31 ~ formattedNumber.number", formattedNumber.number)
                 console.log(response.data);
             })
             .catch(e => {
@@ -40,6 +45,8 @@ const Home = props => {
                 console.log(e);
             });
             setAccount({ id: account.id, balance: n_balance, user: account.user });
+            let formattedNumber = new PrettyNumber(n_balance);
+            setPrettyBalance(formattedNumber.number);
 
         } catch (error) {
             if (!error?.response) {
@@ -70,7 +77,7 @@ const Home = props => {
 
     useEffect(() => {
         getAccount(props.user);
-    }, [props.user]);
+    }, [props.user, account, prettyBalance]);
 
     return (
         <div className="main">
@@ -80,7 +87,7 @@ const Home = props => {
                     <br /><br />
                     <div className="card">
                         <div className="card-body">
-                            <h4>Account Balance: {account.balance}</h4>
+                            <h4>Account Balance: {prettyBalance} CRC</h4>
                             <br />
                             <form onSubmit={addGold} class="row g-3">
                                 <label htmlFor="add">Add to account</label>

@@ -1,13 +1,10 @@
 import React from "react";
-import "./cards.css";
 import { useState, useEffect } from 'react';
-import CardsDataService from "../../services/cards.js"
+import CardsDataService from "../../../services/cards.js"
 import { useNavigate } from "react-router-dom";
-import editIcon from "../../assets/icons/pencil-square.svg"
-import deleteIcon from "../../assets/icons/trash.svg"
-import PrettyNumber from "../../models/prettyNumber";
+import deleteIcon from "../../../assets/icons/trash.svg"
 
-const Cards = props => {
+const DeleteCards = props => {
 
     let navigate = useNavigate();
     const initalCardsState = [];
@@ -16,12 +13,7 @@ const Cards = props => {
     const getCards = user => {
         CardsDataService.getCards(user)
             .then(response => {
-                let formatted = response.data;
-                formatted.forEach(element => {
-                    let number = new PrettyNumber(element.balance);
-                    element.balance = number.number;
-                });
-                setCards(formatted);
+                setCards(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -29,47 +21,48 @@ const Cards = props => {
             });
     };
 
+    const deleteCard = async (e, card) => {
+        //e.preventDefault();
+        CardsDataService.deleteCard(card._id)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+        navigate("../../cards")
+    }
+
     useEffect(() => {
         getCards(props.user);
-    }, [props.user, cards]);
+    });
 
-    const selectCard = async (e, card) => {
-        e.preventDefault();
-        props.select(card);
-        navigate("/card/edit");
-    }
-
-    const addCard = async (e) => {
+    const toCards = async (e) => {
         //e.preventDefault();
-        navigate("/card/new")
+        navigate("../../cards")
     }
-
-    const deleteCard = async (e) => {
-        //e.preventDefault();
-        navigate("/cards/delete")
-    }
-
 
     return (
         <>
             <br />
-            <h2>Credit cards</h2>
+            <h2>Please choose the card you want to delete</h2>
             <br /><br />
             <div className="row mb-3">
                 <div className="col-4">
                     {cards.map((cardData, key) => (
                         <div className="wrapper-card">
-                            <div id="card" key={key} className="card" onClick={(e) => selectCard(e, cardData)}>
+                            <div key={key} className="card" onClick={(e) => deleteCard(e, cardData)}>
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col"><h4>{cardData.name}</h4></div>
                                     </div>
                                     <div className="row">
-                                        <div className="col"><h5>{cardData.balance} CRC</h5></div>
+                                        <div className="col"><h5>{cardData.balance}</h5></div>
                                     </div>
                                     <div className="row">
                                         <div className="col">
-                                            <img id="typeImg" src={require(`../../assets/img/${cardData.type}.png`)} alt="type" /></div>
+                                            <img id="typeImg" src={require(`../../../assets/img/${cardData.type}.png`)} alt="type" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -78,12 +71,12 @@ const Cards = props => {
                 </div>
             </div>
             <br />
-            <button className="btn btn-success" onClick={addCard}>Add Card</button>
-            <button className="btn btn-danger" onClick={deleteCard}>Delete Card</button>
+            <button className="btn btn-secondary" onClick={toCards}>Go back</button>
             <br />
             <br />
         </>
     )
+
 }
 
-export default Cards
+export default DeleteCards;

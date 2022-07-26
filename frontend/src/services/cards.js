@@ -13,6 +13,10 @@ class CardsDataService {
     deleteCard(card_id) {
         return http.delete("/cards/" + card_id)
     }
+
+    editCard(card_edited) {
+        return http.put("/cards/edit", card_edited)
+    }
 }
 
 export default new CardsDataService();

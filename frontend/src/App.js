@@ -12,6 +12,7 @@ import EditCard from "./components/cards/edit/edit_card";
 import AddCard from "./components/cards/add/add_card";
 import AddExpense from "./components/expenses/add_expense";
 import EditExpense from "./components/expenses/edit_expense";
+import DeleteCards from "./components/cards/delete/delete_card";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -67,13 +68,15 @@ function App() {
           </Route>
           <Route path="/cards" element={<Cards user={user} select={selectCard} />}>
           </Route>
-          <Route path="/card/edit" element={<EditCard card={card} select={selectExpense} />}>
+          <Route path="/card/edit" element={<EditCard card={card} select={selectExpense} set={selectCard} />}>
           </Route>
           <Route path="/card/new" element={<AddCard user={user} />}>
           </Route>
           <Route path="/expense_add" element={<AddExpense user={user} card={card} />}>
           </Route>
           <Route path="/expense_edit" element={<EditExpense user={user} expense={expense} />}>
+          </Route>
+          <Route path="/cards/delete" element={<DeleteCards user={user} />}>
           </Route>
         </Routes>
       </div>
