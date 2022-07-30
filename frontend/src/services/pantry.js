@@ -20,6 +20,10 @@ class PantryDataService {
         return http.delete(this.route + "delete/" + object_id)
     }
 
+    itemsBought() {
+        return http.delete(this.route + "bought")
+    }
+
     editObject(object_edited) {
         return http.put(this.route, object_edited)
     }
