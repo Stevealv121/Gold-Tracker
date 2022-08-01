@@ -8,3 +8,7 @@
 #error {
     color: red;
 }
+
+#iconBig {
+    width: 4em;
+}

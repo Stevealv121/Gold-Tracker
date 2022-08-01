@@ -17,6 +17,7 @@ import Pantry from "./components/pantry/pantry";
 import PantryPlace from "./components/pantry/place/pantry_place";
 import AddToPantry from "./components/pantry/add/add_to_pantry";
 import DeletePantryItem from "./components/pantry/delete/delete_from_pantry";
+import Money from "./components/money";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -62,6 +63,9 @@ function App() {
                 <Link class="nav-link active" aria-current="page" to="/home">Home</Link>
               </li>
               <li class="nav-item">
+                <Link class="nav-link" to="/account">Account</Link>
+              </li>
+              <li class="nav-item">
                 <Link class="nav-link" to="/cards">Cards</Link>
               </li>
               <li class="nav-item">
@@ -99,6 +103,8 @@ function App() {
           <Route path="/addToPantry" element={<AddToPantry item={item} place={place} />}>
           </Route>
           <Route path="/deleteFromPantry" element={<DeletePantryItem place={place} />}>
+          </Route>
+          <Route path="/account" element={<Money user={user} />}>
           </Route>
         </Routes>
       </div>

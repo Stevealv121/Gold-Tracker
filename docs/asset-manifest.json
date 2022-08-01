@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/Gold-Tracker/static/css/main.7c4076ed.css",
-    "main.js": "/Gold-Tracker/static/js/main.73ad81cb.js",
+    "main.css": "/Gold-Tracker/static/css/main.4385da21.css",
+    "main.js": "/Gold-Tracker/static/js/main.744e2c84.js",
     "static/js/787.cda612ba.chunk.js": "/Gold-Tracker/static/js/787.cda612ba.chunk.js",
     "static/media/mastercard.png": "/Gold-Tracker/static/media/mastercard.6029df0cd0033efce986.png",
     "static/media/snacks.png": "/Gold-Tracker/static/media/snacks.89857570da1b48e1e5ed.png",
     "static/media/vegetables.png": "/Gold-Tracker/static/media/vegetables.fb9ec59bbb60adf2f5d6.png",
     "static/media/american_express.png": "/Gold-Tracker/static/media/american_express.bb42c22e1716b544df0d.png",
     "static/media/fruits.png": "/Gold-Tracker/static/media/fruits.dba2ba0cc33e6fbe4217.png",
+    "static/media/money.png": "/Gold-Tracker/static/media/money.bbddecc274d4a2a153d9.png",
+    "static/media/credit_cards.png": "/Gold-Tracker/static/media/credit_cards.1036f4675807bec0ff80.png",
     "static/media/remember.png": "/Gold-Tracker/static/media/remember.c8dbd94b7f12145c7d55.png",
     "static/media/freezer.png": "/Gold-Tracker/static/media/freezer.440e334a27c8012dc61a.png",
     "static/media/visa.png": "/Gold-Tracker/static/media/visa.23e4592ce8c295a17ddd.png",
@@ -18,12 +20,12 @@
     "static/media/plus-circle.svg": "/Gold-Tracker/static/media/plus-circle.785f24db48aacfd8961367db6887ef20.svg",
     "static/media/calendar.svg": "/Gold-Tracker/static/media/calendar.84471c0a90fae8ad0f380c56f657f4ba.svg",
     "static/media/dash-circle.svg": "/Gold-Tracker/static/media/dash-circle.c5d983cd354fbe45d2683f4843685a24.svg",
-    "main.7c4076ed.css.map": "/Gold-Tracker/static/css/main.7c4076ed.css.map",
-    "main.73ad81cb.js.map": "/Gold-Tracker/static/js/main.73ad81cb.js.map",
+    "main.4385da21.css.map": "/Gold-Tracker/static/css/main.4385da21.css.map",
+    "main.744e2c84.js.map": "/Gold-Tracker/static/js/main.744e2c84.js.map",
     "787.cda612ba.chunk.js.map": "/Gold-Tracker/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c4076ed.css",
-    "static/js/main.73ad81cb.js"
+    "static/css/main.4385da21.css",
+    "static/js/main.744e2c84.js"
   ]
 }
