@@ -4,6 +4,7 @@ import AccountDataService from "../services/accounts";
 import balanceIcon from "../assets/icons/money.png"
 import cardsIcon from "../assets/icons/credit_cards.png"
 import pantryIcon from "../assets/icons/pantry.png"
+import fsIcon from "../assets/cashflow/financial.png"
 import { useNavigate } from "react-router-dom";
 
 const Home = props => {
@@ -71,6 +72,17 @@ const Home = props => {
                             <div className="row">
                                 <div className="col">
                                     <img id="iconBig" src={pantryIcon} alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div id="card" className="card" onClick={e => { navigate("/cashflow") }}>
+                        <div className="card-body">
+                            <h4>Financial Statement</h4>
+                            <div className="row">
+                                <div className="col">
+                                    <img id="iconBig" src={fsIcon} alt="" />
                                 </div>
                             </div>
                         </div>

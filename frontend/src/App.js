@@ -18,6 +18,8 @@ import PantryPlace from "./components/pantry/place/pantry_place";
 import AddToPantry from "./components/pantry/add/add_to_pantry";
 import DeletePantryItem from "./components/pantry/delete/delete_from_pantry";
 import Money from "./components/money";
+import FinancialStatement from "./components/financialStatement/financialStatement";
+import EditCashFlow from "./components/financialStatement/edit/edit_cash";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -25,6 +27,7 @@ function App() {
   const [expense, setExpense] = React.useState(null);
   const [place, setPlace] = React.useState(null);
   const [item, setItem] = React.useState(null);
+  const [type, setType] = React.useState(null);
 
 
   async function login(user = null) {
@@ -47,6 +50,9 @@ function App() {
   }
   async function selectItem(item = null) {
     setItem(item);
+  }
+  async function selectType(type = null) {
+    setType(type);
   }
 
   return (
@@ -105,6 +111,10 @@ function App() {
           <Route path="/deleteFromPantry" element={<DeletePantryItem place={place} />}>
           </Route>
           <Route path="/account" element={<Money user={user} />}>
+          </Route>
+          <Route path="/cashflow" element={<FinancialStatement user={user} select={selectType} />}>
+          </Route>
+          <Route path="/cashflow/edit" element={<EditCashFlow user={user} type={type} />}>
           </Route>
         </Routes>
       </div>
