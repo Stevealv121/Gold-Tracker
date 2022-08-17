@@ -2,9 +2,11 @@ import React from "react";
 import "./cards.css";
 import { useState, useEffect } from 'react';
 import CardsDataService from "../../services/cards.js"
+import ExpensesDataService from "../../services/expenses.js"
 import { useNavigate } from "react-router-dom";
 import editIcon from "../../assets/icons/pencil-square.svg"
 import deleteIcon from "../../assets/icons/trash.svg"
+import dateIcon from "../../assets/icons/calendar.svg"
 import PrettyNumber from "../../models/prettyNumber";
 
 const Cards = props => {
@@ -12,8 +14,35 @@ const Cards = props => {
     let navigate = useNavigate();
     const initalCardsState = [];
     const [cards, setCards] = useState(initalCardsState);
+    const [debt, setDebt] = useState("");
+    const [month, setMonth] = useState("");
+    const monthsList = ['January', 'February', 'March'
+        , 'April', 'May', 'June', 'July', 'August', 'September',
+        'October', 'November', 'December'];
+    const [showMonthOptions, setShowMonthOptions] = useState(false);
 
-    const getCards = user => {
+    const getDebt = () => {
+        ExpensesDataService.getDebtByMonth(props.user, month)
+            .then(response => {
+                const debt = response.data.amount;
+                let number = new PrettyNumber(debt);
+                setDebt(number.number);
+            }
+            )
+            .catch(e => {
+                console.log(e);
+            }
+            )
+    }
+
+    const getTodayMonth = () => {
+        let today = new Date();
+        let month = today.toLocaleString('default', { month: 'long' });
+        setMonth(month);
+    }
+
+
+    const getCards = async (user) => {
         CardsDataService.getCards(user)
             .then(response => {
                 let formatted = response.data;
@@ -31,7 +60,12 @@ const Cards = props => {
 
     useEffect(() => {
         getCards(props.user);
+        getDebt();
     }, [props.user, cards]);
+
+    useEffect(() => {
+        getTodayMonth();
+    }, []);
 
     const selectCard = async (e, card) => {
         e.preventDefault();
@@ -75,6 +109,29 @@ const Cards = props => {
                             </div>
                         </div>
                     ))}
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div className="col-4">
+                    <div className="row">
+                        <div className="col-auto">
+                            <h4>From {month}</h4>
+                        </div>
+
+                        <div className="col-auto">
+                            {showMonthOptions ? <select onChange={(e) => {
+                                setMonth(e.target.value);
+                                console.log(e.target.value);
+                                setShowMonthOptions(false);
+                            }}>
+                                {monthsList.map((month, key) => (
+                                    <option key={key} value={month}>{month}</option>
+                                ))}
+                            </select>
+                                : <img src={dateIcon} onClick={(e) => setShowMonthOptions(true)} alt="date" id="icon" />}
+                        </div>
+                    </div>
+                    <h4>You owe: {debt} CRC</h4>
                 </div>
             </div>
             <br />

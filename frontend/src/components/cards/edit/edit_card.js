@@ -98,7 +98,11 @@ const EditCard = props => {
         getCard(props.card);
         getExpenses(card._id, selectedMonth);
         //console.log(card._id)
-    }, [props.card, selectedMonth, card._id, expenses])
+    }, [props.card, card._id, selectedMonth])
+
+    // useEffect(() => {
+    //     getExpenses(card._id, selectedMonth);
+    // }, [])
 
 
 
@@ -213,14 +217,14 @@ const EditCard = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    {expenses.map((expense, key) => (
+                    {Array.isArray(expenses) ? expenses.map((expense, key) => (
                         <tr id="table_row" key={key + 1} onClick={(e) => selectExpense(e, expense)}>
                             <th>{key + 1}</th>
                             <td>{expense.description}</td>
                             <td>{expense.cost}</td>
                             <td>{expense.date}</td>
                         </tr>
-                    ))}
+                    )) : null}
                 </tbody>
             </table>
             <div className="row">
@@ -229,6 +233,11 @@ const EditCard = props => {
             </div>
             <br />
             <button className="btn btn-primary" onClick={addExpense}>Add expense</button>
+            <button className="btn btn-secondary" onClick={() => {
+                navigate("/cards")
+            }}>
+                Go Back
+            </button>
             <br />
         </>
     )

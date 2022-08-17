@@ -10,6 +10,10 @@ class ExpensesDataService {
         return http.get("/expenses/" + card_id + "/" + since + "/" + to)
     }
 
+    getDebtByMonth(user, month) {
+        return http.get("/expenses/" + user + "/" + month)
+    }
+
     postExpense(expense) {
         return http.post("/expenses", expense)
     }
