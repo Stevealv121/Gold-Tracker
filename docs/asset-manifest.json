@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Gold-Tracker/static/css/main.4385da21.css",
-    "main.js": "/Gold-Tracker/static/js/main.e8403d4c.js",
+    "main.js": "/Gold-Tracker/static/js/main.21bcf2e0.js",
     "static/js/787.cda612ba.chunk.js": "/Gold-Tracker/static/js/787.cda612ba.chunk.js",
     "static/media/expenses.png": "/Gold-Tracker/static/media/expenses.8e12d10ab485bd903ce3.png",
     "static/media/mastercard.png": "/Gold-Tracker/static/media/mastercard.6029df0cd0033efce986.png",
@@ -26,11 +26,11 @@
     "static/media/calendar.svg": "/Gold-Tracker/static/media/calendar.84471c0a90fae8ad0f380c56f657f4ba.svg",
     "static/media/dash-circle.svg": "/Gold-Tracker/static/media/dash-circle.c5d983cd354fbe45d2683f4843685a24.svg",
     "main.4385da21.css.map": "/Gold-Tracker/static/css/main.4385da21.css.map",
-    "main.e8403d4c.js.map": "/Gold-Tracker/static/js/main.e8403d4c.js.map",
+    "main.21bcf2e0.js.map": "/Gold-Tracker/static/js/main.21bcf2e0.js.map",
     "787.cda612ba.chunk.js.map": "/Gold-Tracker/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4385da21.css",
-    "static/js/main.e8403d4c.js"
+    "static/js/main.21bcf2e0.js"
   ]
 }

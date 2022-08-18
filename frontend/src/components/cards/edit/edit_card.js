@@ -86,7 +86,7 @@ const EditCard = props => {
                 // });
                 // setExpenses(formattedExpenses);
                 setExpenses(response.data);
-                setTotal();
+
                 //console.log(response.data);
             })
             .catch(e => {
@@ -97,11 +97,12 @@ const EditCard = props => {
     useEffect(() => {
         getCard(props.card);
         getExpenses(card._id, selectedMonth);
+        setTotal();
         //console.log(card._id)
-    }, [props.card, card._id, selectedMonth])
+    }, [props.card, card._id, selectedMonth, expenses, total])
 
     // useEffect(() => {
-    //     getExpenses(card._id, selectedMonth);
+    //     setTotal();
     // }, [])
 
 
